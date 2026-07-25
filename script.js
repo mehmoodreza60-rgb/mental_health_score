@@ -3,7 +3,7 @@
 /* ============================================
    Config
    ============================================ */
-const API_URL = "https://mental-health-score-fzsu.onrender.com";
+const API_URL = "https://mental-health-score-prediction-1-513c.onrender.com";
 const RING_CIRCUMFERENCE = 2 * Math.PI * 86; // matches r=86 on #ring-progress
 
 /* ============================================
