@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MindMetric — Student Mental Health Predictor</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Animated background blobs -->
+<div class="bg-blobs" aria-hidden="true">
+  <span class="blob blob-1"></span>
+  <span class="blob blob-2"></span>
+  <span class="blob blob-3"></span>
+</div>
+
+<div id="toast-container" class="toast-container"></div>
+
+<!-- NAV -->
+<header class="navbar">
+  <div class="nav-inner">
+    <a href="#top" class="brand">
+      <i class="fa-solid fa-brain"></i>
+      <span>MindMetric</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#predict-section">Predict</a>
+      <a href="#about-section">About the Model</a>
+      <a href="#footer">Contact</a>
+    </nav>
+    <a href="#predict-section" class="nav-cta">Start Prediction</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy fade-in-up">
+        <span class="eyebrow"><i class="fa-solid fa-wand-magic-sparkles"></i> Machine Learning · Student Wellbeing</span>
+        <h1>Student Mental Health <span class="gradient-text">Predictor</span></h1>
+        <p class="hero-subtitle">Predict a student's mental health score using Machine Learning, based on lifestyle, study habits, and digital behavior.</p>
+        <div class="hero-actions">
+          <a href="#predict-section" class="btn btn-primary btn-lg">
+            <span>Start Prediction</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <a href="#about-section" class="btn btn-ghost btn-lg">How it works</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <strong>12+</strong>
+            <span>Behavioral Signals</span>
+          </div>
+          <div class="stat">
+            <strong>0–100</strong>
+            <span>Score Range</span>
+          </div>
+          <div class="stat">
+            <strong>Real-time</strong>
+            <span>ML Inference</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-illustration fade-in-up delay-1">
+        <div class="illustration-card glass floating">
+          <div class="ring-preview">
+            <svg viewBox="0 0 160 160" class="mini-ring">
+              <circle cx="80" cy="80" r="68" class="ring-track"></circle>
+              <circle cx="80" cy="80" r="68" class="ring-progress ring-demo"></circle>
+            </svg>
+            <div class="ring-preview-label">
+              <span class="ring-preview-score">78</span>
+              <span class="ring-preview-tag">Good</span>
+            </div>
+          </div>
+          <ul class="illustration-list">
+            <li><i class="fa-solid fa-moon"></i> Sleep Quality</li>
+            <li><i class="fa-solid fa-book-open"></i> Study Balance</li>
+            <li><i class="fa-solid fa-person-running"></i> Physical Activity</li>
+            <li><i class="fa-solid fa-mobile-screen"></i> Screen Time</li>
+          </ul>
+        </div>
+        <div class="floating-chip chip-1 floating"><i class="fa-solid fa-heart-pulse"></i> Live Score</div>
+        <div class="floating-chip chip-2 floating-slow"><i class="fa-solid fa-chart-line"></i> Trend Aware</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREDICTION FORM -->
+  <section class="predict-section" id="predict-section">
+    <div class="section-head fade-in-up">
+      <span class="eyebrow"><i class="fa-solid fa-sliders"></i> Prediction Form</span>
+      <h2>Tell us about the student</h2>
+      <p>Fill in the details below. All fields are required for an accurate prediction.</p>
+    </div>
+
+    <form id="predict-form" class="glass form-card fade-in-up delay-1" novalidate>
+
+      <div class="form-grid">
+
+        <div class="field">
+          <label for="age"><i class="fa-solid fa-cake-candles"></i> Age</label>
+          <input type="number" id="age" name="age" min="10" max="100" placeholder="e.g. 20" required>
+          <span class="field-error" data-error-for="age"></span>
+        </div>
+
+        <div class="field">
+          <label for="gender"><i class="fa-solid fa-venus-mars"></i> Gender</label>
+          <div class="select-wrap">
+            <select id="gender" name="gender" required>
+              <option value="" disabled selected>Select gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+            <i class="fa-solid fa-chevron-down select-arrow"></i>
+          </div>
+          <span class="field-error" data-error-for="gender"></span>
+        </div>
+
+        <div class="field">
+          <label for="country"><i class="fa-solid fa-earth-americas"></i> Country</label>
+          <input type="text" id="country" name="country" placeholder="e.g. India" required>
+          <span class="field-error" data-error-for="country"></span>
+        </div>
+
+        <div class="field">
+          <label for="academic_level"><i class="fa-solid fa-graduation-cap"></i> Academic Level</label>
+          <div class="select-wrap">
+            <select id="academic_level" name="academic_level" required>
+              <option value="" disabled selected>Select level</option>
+              <option value="High School">High School</option>
+              <option value="Undergraduate">Undergraduate</option>
+              <option value="Graduate">Graduate</option>
+              <option value="Postgraduate">Postgraduate</option>
+            </select>
+            <i class="fa-solid fa-chevron-down select-arrow"></i>
+          </div>
+          <span class="field-error" data-error-for="academic_level"></span>
+        </div>
+
+        <div class="field">
+          <label for="most_used_platform"><i class="fa-solid fa-hashtag"></i> Most Used Platform</label>
+          <div class="select-wrap">
+            <select id="most_used_platform" name="most_used_platform" required>
+              <option value="" disabled selected>Select platform</option>
+              <option value="Instagram">Instagram</option>
+              <option value="YouTube">YouTube</option>
+              <option value="TikTok">TikTok</option>
+              <option value="Facebook">Facebook</option>
+              <option value="Twitter/X">Twitter / X</option>
+              <option value="WhatsApp">WhatsApp</option>
+              <option value="Snapchat">Snapchat</option>
+              <option value="Other">Other</option>
+            </select>
+            <i class="fa-solid fa-chevron-down select-arrow"></i>
+          </div>
+          <span class="field-error" data-error-for="most_used_platform"></span>
+        </div>
+
+        <div class="field">
+          <label for="purpose_of_use"><i class="fa-solid fa-bullseye"></i> Purpose Of Use</label>
+          <div class="select-wrap">
+            <select id="purpose_of_use" name="purpose_of_use" required>
+              <option value="" disabled selected>Select purpose</option>
+              <option value="Education">Education</option>
+              <option value="Entertainment">Entertainment</option>
+              <option value="Social Networking">Social Networking</option>
+              <option value="News">News</option>
+              <option value="Work">Work</option>
+              <option value="Other">Other</option>
+            </select>
+            <i class="fa-solid fa-chevron-down select-arrow"></i>
+          </div>
+          <span class="field-error" data-error-for="purpose_of_use"></span>
+        </div>
+
+        <div class="field">
+          <label for="avg_daily_usage_hours"><i class="fa-solid fa-mobile-screen-button"></i> Avg Daily Usage (hrs)</label>
+          <input type="number" id="avg_daily_usage_hours" name="avg_daily_usage_hours" min="0" max="24" step="0.1" placeholder="e.g. 5" required>
+          <span class="field-error" data-error-for="avg_daily_usage_hours"></span>
+        </div>
+
+        <div class="field">
+          <label for="daily_unlocks"><i class="fa-solid fa-unlock"></i> Daily Unlocks</label>
+          <input type="number" id="daily_unlocks" name="daily_unlocks" min="0" max="500" placeholder="e.g. 80" required>
+          <span class="field-error" data-error-for="daily_unlocks"></span>
+        </div>
+
+        <div class="field">
+          <label for="study_hours"><i class="fa-solid fa-book"></i> Study Hours</label>
+          <input type="number" id="study_hours" name="study_hours" min="0" max="24" step="0.1" placeholder="e.g. 4" required>
+          <span class="field-error" data-error-for="study_hours"></span>
+        </div>
+
+        <div class="field">
+          <label for="physical_activity_hours"><i class="fa-solid fa-dumbbell"></i> Physical Activity (hrs)</label>
+          <input type="number" id="physical_activity_hours" name="physical_activity_hours" min="0" max="24" step="0.1" placeholder="e.g. 1" required>
+          <span class="field-error" data-error-for="physical_activity_hours"></span>
+        </div>
+
+        <div class="field">
+          <label for="sleep_hours_per_night"><i class="fa-solid fa-bed"></i> Sleep Hours / Night</label>
+          <input type="number" id="sleep_hours_per_night" name="sleep_hours_per_night" min="0" max="24" step="0.1" placeholder="e.g. 7" required>
+          <span class="field-error" data-error-for="sleep_hours_per_night"></span>
+        </div>
+
+        <div class="field">
+          <label for="stress_level"><i class="fa-solid fa-face-dizzy"></i> Stress Level</label>
+          <div class="select-wrap">
+            <select id="stress_level" name="stress_level" required>
+              <option value="" disabled selected>Select stress level</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+            <i class="fa-solid fa-chevron-down select-arrow"></i>
+          </div>
+          <span class="field-error" data-error-for="stress_level"></span>
+        </div>
+
+      </div>
+
+      <button type="submit" id="predict-btn" class="btn btn-primary btn-lg btn-block">
+        <span class="btn-label"><i class="fa-solid fa-magnifying-glass-chart"></i> Predict Mental Health Score</span>
+        <span class="btn-spinner" aria-hidden="true"></span>
+      </button>
+    </form>
+  </section>
+
+  <!-- RESULT SECTION -->
+  <section class="result-section" id="result-section">
+    <div class="result-card glass fade-in-up" id="result-card" hidden>
+      <div class="result-left">
+        <div class="ring-wrap">
+          <svg viewBox="0 0 200 200" class="score-ring">
+            <circle cx="100" cy="100" r="86" class="ring-track"></circle>
+            <circle cx="100" cy="100" r="86" class="ring-progress" id="ring-progress"></circle>
+          </svg>
+          <div class="ring-center">
+            <span class="score-number" id="score-number">0</span>
+            <span class="score-suffix">/ 100</span>
+          </div>
+        </div>
+      </div>
+      <div class="result-right">
+        <span class="eyebrow" id="result-eyebrow"><i class="fa-solid fa-circle-check"></i> Prediction Complete</span>
+        <h3 id="result-tag">Moderate</h3>
+        <p id="result-desc">The student's mental health score suggests a moderate wellbeing state. Consider light lifestyle adjustments.</p>
+        <div class="legend">
+          <div class="legend-item"><span class="dot dot-poor"></span> 0–30 Poor Mental Health</div>
+          <div class="legend-item"><span class="dot dot-needs"></span> 31–50 Needs Attention</div>
+          <div class="legend-item"><span class="dot dot-moderate"></span> 51–70 Moderate</div>
+          <div class="legend-item"><span class="dot dot-good"></span> 71–85 Good</div>
+          <div class="legend-item"><span class="dot dot-excellent"></span> 86–100 Excellent</div>
+        </div>
+        <button class="btn btn-ghost" id="retry-btn"><i class="fa-solid fa-rotate-left"></i> Predict Again</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT MODEL -->
+  <section class="about-section" id="about-section">
+    <div class="section-head fade-in-up">
+      <span class="eyebrow"><i class="fa-solid fa-microchip"></i> About the Model</span>
+      <h2>How the prediction works</h2>
+      <p>This prediction is generated using a Machine Learning regression model trained on student behavioral and lifestyle data — turning everyday habits into a single wellbeing signal.</p>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card glass fade-in-up">
+        <div class="feature-icon"><i class="fa-solid fa-book-open-reader"></i></div>
+        <h4>Study Hours</h4>
+        <p>Time invested in academics, weighed against rest and recovery.</p>
+      </div>
+      <div class="feature-card glass fade-in-up delay-1">
+        <div class="feature-icon"><i class="fa-solid fa-bed"></i></div>
+        <h4>Sleep</h4>
+        <p>Nightly sleep duration, a strong predictor of emotional regulation.</p>
+      </div>
+      <div class="feature-card glass fade-in-up delay-2">
+        <div class="feature-icon"><i class="fa-solid fa-face-dizzy"></i></div>
+        <h4>Stress</h4>
+        <p>Self-reported stress level captured at the time of assessment.</p>
+      </div>
+      <div class="feature-card glass fade-in-up delay-3">
+        <div class="feature-icon"><i class="fa-solid fa-hashtag"></i></div>
+        <h4>Social Media</h4>
+        <p>Daily usage and unlock frequency across digital platforms.</p>
+      </div>
+      <div class="feature-card glass fade-in-up delay-4">
+        <div class="feature-icon"><i class="fa-solid fa-person-running"></i></div>
+        <h4>Physical Activity</h4>
+        <p>Movement and exercise hours that support mental resilience.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer" id="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <i class="fa-solid fa-brain"></i>
+      <span>MindMetric</span>
+    </div>
+    <div class="footer-credit">
+      <p>Created by <strong>Mehmood Reza</strong></p>
+      <span>Machine Learning Engineer</span>
+    </div>
+    <div class="footer-socials">
+      <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 MindMetric. Built for research &amp; educational purposes.</div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
